@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Constructeur de Prompt ACTIF</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5fa; }
+    h1 { color: #5e2b97; }
+    label { display: block; margin: 15px 0 5px; font-weight: bold; }
+    input, textarea { width: 100%; padding: 8px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc; }
+    #result { margin-top: 20px; background: #fff; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+    button { background: #5e2b97; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px; }
+    button:hover { background: #452176; }
+  </style>
+</head>
+<body>
+  <h1>🧠 Constructeur de Prompt ACTIF</h1>
+
+  <label for="identite">🔷 Identité (Qui doit répondre ?)</label>
+  <input id="identite" type="text" placeholder="Ex : Agis comme un expert en cybersécurité">
+
+  <label for="contexte">🔶 Contexte (À propos de quoi ?)</label>
+  <input id="contexte" type="text" placeholder="Ex : Pour une startup qui développe une application mobile">
+
+  <label for="action">🔹 Action (Que doit faire l'IA ?)</label>
+  <input id="action" type="text" placeholder="Ex : Donne 5 conseils pour améliorer la sécurité des données">
+
+  <label for="tonalite">🔸 Tonalité (Quel style ?)</label>
+  <input id="tonalite" type="text" placeholder="Ex : Avec un ton professionnel et accessible">
+
+  <label for="format">🔺 Format (Sous quelle forme ?)</label>
+  <input id="format" type="text" placeholder="Ex : Présente la réponse sous forme de liste à puces">
+
+  <button onclick="genererPrompt()">✅ Générer le prompt</button>
+
+  <div id="result"></div>
+
+  <script>
+    function genererPrompt() {
+      const i = document.getElementById("identite").value;
+      const c = document.getElementById("contexte").value;
+      const a = document.getElementById("action").value;
+      const t = document.getElementById("tonalite").value;
+      const f = document.getElementById("format").value;
+
+      const prompt = `${i}. ${c}. ${a}. ${t}. ${f}.`;
+      document.getElementById("result").innerHTML = `
+        <h3>📋 Prompt généré :</h3>
+        <textarea rows="6" readonly>${prompt}</textarea>
+        <button onclick="copierPrompt()">📋 Copier le prompt</button>
+      `;
+    }
+
+    function copierPrompt() {
+      const textarea = document.querySelector("#result textarea");
+      textarea.select();
+      document.execCommand("copy");
+      alert("Prompt copié dans le presse-papiers !");
+    }
+  </script>
+</body>
+</html>
